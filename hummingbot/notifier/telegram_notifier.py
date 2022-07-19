@@ -47,6 +47,7 @@ TELEGRAM_MSG_LENGTH_LIMIT = 3000
 
 def authorized_only(handler: Callable[[Any, Bot, Update], None]) -> Callable[..., Any]:
     """ Decorator to check if the message comes from the correct chat_id """
+
     def wrapper(self, *args, **kwargs):
         update = kwargs.get('update') or args[1]
 

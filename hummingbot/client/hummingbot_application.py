@@ -13,6 +13,7 @@ from hummingbot.client.config.config_helpers import (
 )
 from hummingbot.client.config.global_config_map import global_config_map
 from hummingbot.client.config.security import Security
+from hummingbot.client.restapi.handlers import RestAppBot
 from hummingbot.client.settings import AllConnectorSettings, ConnectorType
 from hummingbot.client.tab import __all__ as tab_classes
 from hummingbot.client.tab.data_types import CommandTab
@@ -297,6 +298,10 @@ class HummingbotApplication(*commands):
                         hb=self,
                     )
                 )
+        # add web app
+        self.notifiers.append(
+            RestAppBot(hb=self)
+        )
         for notifier in self.notifiers:
             notifier.start()
 
